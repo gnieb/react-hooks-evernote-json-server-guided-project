@@ -9,6 +9,7 @@ function NoteContainer() {
 
   const [notes, setNotes] = useState([])
   const [chosen, setChosen] = useState('')
+  const [searchString, setSearchString] = useState('')
 
     useEffect( () => {fetch('http://localhost:3000/notes')
     .then(r => r.json())
@@ -20,11 +21,19 @@ function NoteContainer() {
       console.log(chosen)
     }
 
+    function handleSearched (string) {
+      setSearchString(string.toLowerCase())
+    }
+
+
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchString.toLowerCase()))
+   
+
   return (
     <>
-      <Search />
+      <Search handleSearched={handleSearched}/>
       <div className="container">
-        <Sidebar handleChosen={handleChosen} notes={notes}/>
+        <Sidebar handleChosen={handleChosen} notes={filteredNotes}/>
         <Content chosen={chosen}/>
       </div>
     </>

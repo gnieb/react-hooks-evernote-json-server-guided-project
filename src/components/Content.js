@@ -2,6 +2,7 @@ import React from "react";
 import NoteEditor from "./NoteEditor";
 import NoteViewer from "./NoteViewer";
 import Instructions from "./Instructions";
+import { useState } from "react";
 
 /*
   Advice: If you cannot figure out how to get this component to work,
@@ -11,8 +12,12 @@ import Instructions from "./Instructions";
           refactor to get this Content component to work.
 */
 function Content({chosen}) {
+
+  const [isEditing, setIsEditing] = useState(false)
+
+
   const getContent = () => {
-    if (chosen == '') {
+    if (isEditing) {
       return <NoteEditor />;
     } else if (chosen != '') {
       return <NoteViewer chosen={chosen} />;
