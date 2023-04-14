@@ -18,7 +18,6 @@ function NoteContainer() {
 
     function handleChosen(id) {
       setChosen(notes[id-1])
-      console.log(chosen)
     }
 
     function handleSearched (string) {

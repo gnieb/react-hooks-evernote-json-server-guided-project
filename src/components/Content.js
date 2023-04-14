@@ -15,12 +15,16 @@ function Content({chosen}) {
 
   const [isEditing, setIsEditing] = useState(false)
 
+  function handleEditMode() {
+    setIsEditing(!isEditing)
+    
+  }
 
   const getContent = () => {
-    if (isEditing) {
-      return <NoteEditor />;
+    if ( isEditing) {
+      return <NoteEditor  chosen={chosen} handleEditMode={handleEditMode} />;
     } else if (chosen != '') {
-      return <NoteViewer chosen={chosen} />;
+      return <NoteViewer handleEditMode={handleEditMode} chosen={chosen} />;
     } else {
       return <Instructions />;
     }
