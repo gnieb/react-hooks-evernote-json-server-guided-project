@@ -1,6 +1,6 @@
 import React from "react";
 
-function NoteViewer({chosen, handleEditMode}) {
+function NoteViewer({chosenNote, handleEditMode}) {
 
 function handleClick() {
   return handleEditMode()
@@ -8,8 +8,8 @@ function handleClick() {
 
   return (
     <>
-      <h2>{chosen.title}</h2>
-      <p>{chosen.body}</p>
+      <h2>{chosenNote.title}</h2>
+      <p>{chosenNote.body}</p>
       <button onClick={handleClick}>Edit</button>
     </>
   );

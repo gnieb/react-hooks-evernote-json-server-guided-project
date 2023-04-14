@@ -8,16 +8,16 @@ import { useEffect, useState } from "react";
 function NoteContainer() {
 
   const [notes, setNotes] = useState([])
-  const [chosen, setChosen] = useState('')
+  const [chosen, setChosen] = useState(null)
   const [searchString, setSearchString] = useState('')
 
     useEffect( () => {fetch('http://localhost:3000/notes')
     .then(r => r.json())
-    .then(data => setNotes(data))}, ([]))
+    .then(data => setNotes(data))}, [])
   
 
-    function handleChosen(id) {
-      setChosen(notes[id-1])
+    function handleChosen(num) {
+      setChosen((num))
     }
 
     function handleSearched (string) {
@@ -29,12 +29,14 @@ function NoteContainer() {
       setNotes([...notes, newNote])
     }
 
+    const chosenNote = notes.find((note) => note.id === parseInt(chosen))
+
   return (
     <>
       <Search handleSearched={handleSearched}/>
       <div className="container">
         <Sidebar addNewNote={addNewNote} handleChosen={handleChosen} notes={filteredNotes}/>
-        <Content chosen={chosen}/>
+        <Content chosenNote={chosenNote} chosen={chosen}/>
       </div>
     </>
   );

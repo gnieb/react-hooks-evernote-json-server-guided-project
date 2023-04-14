@@ -11,7 +11,7 @@ import { useState } from "react";
           Then complete the rest of your app before attempting to
           refactor to get this Content component to work.
 */
-function Content({chosen}) {
+function Content({chosen, chosenNote}) {
 
   const [isEditing, setIsEditing] = useState(false)
 
@@ -22,9 +22,9 @@ function Content({chosen}) {
 
   const getContent = () => {
     if ( isEditing) {
-      return <NoteEditor  chosen={chosen} handleEditMode={handleEditMode} />;
-    } else if (chosen != '') {
-      return <NoteViewer handleEditMode={handleEditMode} chosen={chosen} />;
+      return <NoteEditor  chosenNote={chosenNote} handleEditMode={handleEditMode} />;
+    } else if (chosen !== null ) {
+      return <NoteViewer handleEditMode={handleEditMode} chosenNote={chosenNote} />;
     } else {
       return <Instructions />;
     }

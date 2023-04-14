@@ -4,6 +4,7 @@ function NoteItem({id, title, body, handleChosen}) {
 
   const handleClick = (e) => {
     handleChosen(e.target.parentElement['id'])
+    console.log(e.target.parentElement['id'])
   }
 
   return (
