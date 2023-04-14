@@ -8,10 +8,36 @@ function NoteEditor({chosen, handleEditMode}) {
     handleEditMode()
   }
 
+  function handleTitle(e){
+    setTitle(e.target.value)
+  }
+  function handleBody(e){
+    setBody(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const editedNote = {
+      "userId" : chosen.userId,
+      "title" : title,
+      "body" : body
+    }
+    fetch(`http://localhost:3000/notes/${chosen.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedNote)
+    })
+    
+  }
+
+
+
   return (
-    <form className="note-editor">
-      <input type="text" name="title" value={chosen.title}/>
-      <textarea name="body" value={title} />
+    <form onSubmit={handleSubmit} className="note-editor">
+      <input onChange = {handleTitle} type="text" name="title" value={title}/>
+      <textarea onChange={handleBody} name="body" value={body} />
       <div className="button-row">
         <input className="button" type="submit" value="Save" />
         <button type="button" onClick={cancelEditMode}>Cancel</button>
