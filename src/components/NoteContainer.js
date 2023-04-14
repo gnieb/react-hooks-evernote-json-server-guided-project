@@ -24,16 +24,17 @@ function NoteContainer() {
     function handleSearched (string) {
       setSearchString(string.toLowerCase())
     }
-
-
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchString.toLowerCase()))
    
+    function addNewNote (newNote) {
+      setNotes([...notes, newNote])
+    }
 
   return (
     <>
       <Search handleSearched={handleSearched}/>
       <div className="container">
-        <Sidebar handleChosen={handleChosen} notes={filteredNotes}/>
+        <Sidebar addNewNote={addNewNote} handleChosen={handleChosen} notes={filteredNotes}/>
         <Content chosen={chosen}/>
       </div>
     </>
