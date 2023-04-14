@@ -1,10 +1,15 @@
 import React from "react";
 
-function NoteItem() {
+function NoteItem({id, title, body, handleChosen}) {
+
+  const handleClick = (e) => {
+    handleChosen(e.target.parentElement['id'])
+  }
+
   return (
-    <li>
-      <h2>Title</h2>
-      <p>Caption...</p>
+    <li id={id} onClick={handleClick}>
+      <h2>{title}</h2>
+      <p>{body.slice(0,20)}...</p>
     </li>
   );
 }
