@@ -16,9 +16,9 @@ function NoteContainer() {
     .then(data => setNotes(data))}, [])
   
 
-    function handleChosen(num) {
-      setChosen((num))
-    }
+    // function handleChosen(num) {
+    //   setChosen((num))
+    // }
 
     function handleSearched (string) {
       setSearchString(string.toLowerCase())
@@ -35,7 +35,7 @@ function NoteContainer() {
     <>
       <Search handleSearched={handleSearched}/>
       <div className="container">
-        <Sidebar addNewNote={addNewNote} handleChosen={handleChosen} notes={filteredNotes}/>
+        <Sidebar addNewNote={addNewNote} handleChosen={setChosen} notes={filteredNotes}/>
         <Content chosenNote={chosenNote} chosen={chosen}/>
       </div>
     </>
